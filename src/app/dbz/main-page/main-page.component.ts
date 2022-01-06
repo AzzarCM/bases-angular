@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Personaje } from '../interfaces/dbz.interface';
+import { DbzService } from '../services/dbz.service';
 
-interface Personaje {
-  nombre: string;
-  poder: number;
-}
+
 
 @Component({
   selector: 'app-main-page',
@@ -12,21 +11,19 @@ interface Personaje {
 })
 export class MainPageComponent{
 
+  //personajes: Personaje[] = []  forma 1 de obtener la informacion del servicio y pasarsela a nuestro html
 
   nuevo: Personaje = {
-    nombre: 'Trunks',
-    poder: 5000
+    nombre: 'Maestro Roshi',
+    poder: 1000
   }
 
+  // get personajes(): Personaje[]{
+  //   return this.dbzService.personajes --> forma 2 de obtener la informacion del servicio
+  // }
 
 
-  agregar(){
-    console.log(this.nuevo);
-    
-  }
 
-  cambiarNombre(e: any){
-    console.log(e.target.value);
-    
-  }
+  constructor( private dbzService: DbzService ){}  //this.personajes = this.dbzService.personajes  --> forma 1 de obtener la informacion del servicio
+  
 }
